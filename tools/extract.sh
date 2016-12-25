@@ -35,7 +35,7 @@ FILESLIST=`find $S_INPUT -type f -name "*.php"`
 while read -r phpfile; do
 	#Analyze each PHP file
 	#First scan is for standard {{ 'ABC' |trans}} strings
-	LIST=`$S_GREP -E -o "\{\{[^}]+trans:?\s*(\{|\}\})" $phpfile | $S_SED -r "s/\\s*\\\\\?'\\s*\\|\\s*trans:?\\s*(\{.*$|\\}\\}\\s*$)//" | $S_SED -r "s/^\\s*\\{\\{\\s*\\\\\?'\\s*//" | $S_SED -e "s/\\\\\\'/'/g"`
+	LIST=`$S_GREP -E -o "\{\{[^}]+trans:?\s*(\{|\}\})" $phpfile | $S_SED -r "s/\\s*\\\\\?('|\")\\s*\\|\\s*trans:?\\s*(\{.*$|\\}\\}\\s*$)//" | $S_SED -r "s/^\\s*\\{\\{\\s*\\\\\?('|\")\\s*//" | $S_SED -e "s/\\\\\\'/'/g"`
 	STRINGLIST=`echo -e "$STRINGLIST"; echo -e "$LIST"`
 	
 	#Second scan is for PHP invoked calls like $app['translator']->trans('ABC')
