@@ -6,3 +6,17 @@
 ehthumbs.db
 Thumbs.db
 /nbproject
+
+#log files
+*.log
+
+#bak files
+~*
+*.bak
+
+#archives
+*.zip
+*.rar
+
+# IDE
+/.idea/deployment.xml
